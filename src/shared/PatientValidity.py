@@ -3,7 +3,7 @@ import json
 # Define a relative path
 configJson= "src/config.json"
 
-def check_patient_id(patient_id):
+def CheckPatientValidity(patient_id):
     with open(configJson, 'r') as data_file:
         f_data = json.load(data_file)
         users = f_data['users']

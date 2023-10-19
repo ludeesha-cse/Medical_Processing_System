@@ -5,38 +5,38 @@ dataJson = "src/data.json"
 class Patient:
 
     @staticmethod
-    def read_sickness_details(patient_id):
+    def GetDiseaseDetails(PatientID):
 
-        # read sickness details from data file
+        # read disease details from data file
         with open(dataJson, 'r') as json_data_file:
             data = json.load(json_data_file)
             details = data['sickness_details']
 
             for detail in details:
-                if detail['id'] == patient_id:
+                if detail['id'] == PatientID:
                     print(detail['date'] + ' - ' + detail['sickness'])
 
     @staticmethod
-    def read_drug_prescription(patient_id):
+    def GetPrescription(PatientID):
 
-        # read drug prescription from data file
+        # read prescription from data file
         with open(dataJson, 'r') as json_data_file:
             data = json.load(json_data_file)
             details = data['drug_presc']
 
             for detail in details:
-                if detail['id'] == patient_id:
+                if detail['id'] == PatientID:
                     print(detail['date'] + ' - ' + detail['drug_presc'])
 
     @staticmethod
-    def read_labtest_prescription(patient_id):
+    def GetLabTest(PatientID):
 
-        # read lab test prescription from data file
+        # read lab test from data file
         with open(dataJson, 'r') as json_data_file:
             data = json.load(json_data_file)
             details = data['labtest_presc']
 
             for detail in details:
-                if detail['id'] == patient_id:
+                if detail['id'] == PatientID:
                     print(detail['date'] + ' - ' + detail['labtest_presc'])
 

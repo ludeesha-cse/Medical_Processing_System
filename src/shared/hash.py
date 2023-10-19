@@ -15,6 +15,6 @@ def Encode(EncodeText):
 
 #decoding encoded message
 def Decode(DecodeText):
-    DecodedBase64 = base64.b64decode(DecodeText.encode('ascii'))
-    DecodedMessage = DecodedBase64.decode('ascii')
+    DecodedBase64 = base64.b64decode(DecodeText.encode('ascii')) # decoding the encoded data using base64 library
+    DecodedMessage = DecodedBase64.decode('ascii') # decoding the encoded data using ascii
     return DecodedMessage

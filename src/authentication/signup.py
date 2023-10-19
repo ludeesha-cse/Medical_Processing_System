@@ -28,22 +28,22 @@ class SignUp:
         # hotel staff accounts can only be created by using the relevant code for security
         while True:
 
-            role_number = input('Press 1 for "doctor account" or 2 for "receptionist account": ')
-
-            if role_number == '1':
+            InputOption = input('Press 1 for "doctor account" or 2 for "receptionist account": ')
+            
+            # if doctor
+            if InputOption == '1':
                 code = HashingPassword(input("Please enter the doctor code to create account: "))
                 if code == doc_code:
                     user_type = self.roles.get('1')
-                    #privilege_level = '2'
                     break
                 else:
                     print("Invalid code")
 
-            elif role_number == '2':
+            # if receptionist
+            elif InputOption == '2':
                 code = HashingPassword(input("Please enter the receptionist code to create account: "))
                 if code == rec_code:
                     user_type = self.roles.get('2')
-                    #privilege_level = '3'
                     break
                 else:
                     print("Invalid code")
@@ -57,9 +57,8 @@ class SignUp:
             data['users'].append({
                 'id': user_id,
                 'name': name,
-                'password': safe_password,
+                'password': safe_password, # safe_password is the hashed password
                 'user_type': user_type,
-                #'privilege_level': privilege_level
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)

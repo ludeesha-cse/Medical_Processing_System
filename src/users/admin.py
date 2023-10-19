@@ -11,17 +11,18 @@ class Admin:
         doctor, receptionist = '', ''
         print("Press 1 to edit doctor code\nPress 2 to edit receptionist code\nPress 3 to create admin account\nPress -1 to exit\n")
         while True:
-            role_number = input()
-            if role_number == '1':
+            
+            ImputOption = input()
+            if ImputOption == '1':
                 doctor = HashingPassword(input("Enter new doctor code: "))
                 print("Press next number: ")
-            elif role_number == '2':
+            elif ImputOption == '2':
                 receptionist = HashingPassword(input("Enter new receptionist code: "))
                 print("Press next number: ")
-            elif role_number == '3':
+            elif ImputOption == '3':
                 self.create_admin()
                 print("Press next number: ")
-            elif role_number == '-1':
+            elif ImputOption == '-1':
                 print("Thank you admin")
                 break
             else:
@@ -57,7 +58,6 @@ class Admin:
                 'name': name,
                 'password': temp_password,
                 'user_type': "admin",
-                #'privilege_level': '1'
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)

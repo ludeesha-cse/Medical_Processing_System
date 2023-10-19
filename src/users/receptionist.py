@@ -9,20 +9,19 @@ dataJson = "src/data.json"
 class Receptionist:
 
     @staticmethod
-    def create_patient_account():
+    def CreatePatientAccount():
         name = input('Patient username: ')
         temp_password = HashingPassword(input('Password: '))
 
         # read and write user to config file
-        with open(configJson, 'r') as json_data_file:
-            data = json.load(json_data_file)
-            patient_id = len(data['users'])+1
+        with open(configJson, 'r') as DataJson:
+            data = json.load(DataJson)
+            PatientID = len(data['users'])+1
             data['users'].append({
-                'id': patient_id,
+                'id': PatientID,
                 'name': name,
                 'password': temp_password,
                 'user_type': "patient",
-                #'privilege_level': '4'
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)
@@ -36,10 +35,10 @@ class Receptionist:
         tel = input('Telephone number: ')
 
         # read and write patient details to data file
-        with open(dataJson, 'r') as json_data_file:
-            data = json.load(json_data_file)
+        with open(dataJson, 'r') as DataJson:
+            data = json.load(DataJson)
             data['personal_details'].append({
-                'id': patient_id,
+                'id': PatientID,
                 'name': patient_name,
                 'age': age,
                 'nic_no': Encode(nic_no),
