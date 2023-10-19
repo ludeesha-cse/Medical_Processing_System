@@ -1,20 +1,20 @@
 import hashlib
 import base64
 
+#hashing the user entered password
+def HashingPassword(UserPW):
+    HashedPW = hashlib.md5() #hashing user entered password using md5 library
+    HashedPW.update(UserPW.encode("utf-8"))
+    return HashedPW.hexdigest()
 
-def hash_password(user_password):
-    hashed_password = hashlib.md5()
-    hashed_password.update(user_password.encode("utf-8"))
-    return hashed_password.hexdigest()
+#encoding user entered data
+def Encode(EncodeText):
+    EncodedMessage = base64.b64encode(EncodeText.encode('ascii')) # encoding user entered data using base64 library for transmitting purposes
+    DecodedMessage = EncodedMessage.decode('ascii') # decoding the encoded data after trasmitting
+    return DecodedMessage
 
-
-def encode(encode_text):
-    base64_bytes = base64.b64encode(encode_text.encode('ascii'))
-    base64_message = base64_bytes.decode('ascii')
-    return base64_message
-
-
-def decode(decode_text):
-    message_bytes = base64.b64decode(decode_text.encode('ascii'))
-    message = message_bytes.decode('ascii')
-    return message
+#decoding encoded message
+def Decode(DecodeText):
+    DecodedBase64 = base64.b64decode(DecodeText.encode('ascii'))
+    DecodedMessage = DecodedBase64.decode('ascii')
+    return DecodedMessage

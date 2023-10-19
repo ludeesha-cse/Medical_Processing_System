@@ -11,7 +11,7 @@ class Receptionist:
     @staticmethod
     def create_patient_account():
         name = input('Patient username: ')
-        temp_password = hash_password(input('Password: '))
+        temp_password = HashingPassword(input('Password: '))
 
         # read and write user to config file
         with open(configJson, 'r') as json_data_file:
@@ -22,7 +22,7 @@ class Receptionist:
                 'name': name,
                 'password': temp_password,
                 'user_type': "patient",
-                'privilege_level': '4'
+                #'privilege_level': '4'
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)
@@ -42,8 +42,8 @@ class Receptionist:
                 'id': patient_id,
                 'name': patient_name,
                 'age': age,
-                'nic_no': encode(nic_no),
-                'tel': encode(tel)
+                'nic_no': Encode(nic_no),
+                'tel': Encode(tel)
             })
         with open(dataJson, 'w') as outfile:
             json.dump(data, outfile)

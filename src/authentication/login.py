@@ -1,5 +1,5 @@
 import json
-from src.shared.hash import hash_password
+from src.shared.hash import HashingPassword
 
 #relative paths for json files
 configJson="src/config.json"
@@ -7,10 +7,10 @@ configJson="src/config.json"
 class Login:
 
     @staticmethod
-    def auth_user():
+    def UserAuthentication():
         result = 'Login failed'
         name = input("Enter username: ")
-        hashed_password = hash_password(input("Enter password: "))
+        hashed_password = HashingPassword(input("Enter password: "))
 
         with open(configJson, 'r') as json_data_file:
             data = json.load(json_data_file)

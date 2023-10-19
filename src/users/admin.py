@@ -13,10 +13,10 @@ class Admin:
         while True:
             role_number = input()
             if role_number == '1':
-                doctor = hash_password(input("Enter new doctor code: "))
+                doctor = HashingPassword(input("Enter new doctor code: "))
                 print("Press next number: ")
             elif role_number == '2':
-                receptionist = hash_password(input("Enter new receptionist code: "))
+                receptionist = HashingPassword(input("Enter new receptionist code: "))
                 print("Press next number: ")
             elif role_number == '3':
                 self.create_admin()
@@ -46,7 +46,7 @@ class Admin:
     @staticmethod
     def create_admin():
         name = input('Admin username: ')
-        temp_password = hash_password(input('Temporary password: '))
+        temp_password = HashingPassword(input('Temporary password: '))
 
         # read and write user to config file
         with open(configJson, 'r') as json_data_file:
@@ -57,7 +57,7 @@ class Admin:
                 'name': name,
                 'password': temp_password,
                 'user_type': "admin",
-                'privilege_level': '1'
+                #'privilege_level': '1'
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)
@@ -77,8 +77,8 @@ class Admin:
                 'id': admin_id,
                 'name': admin_name,
                 'age': age,
-                'nic_no': encode(nic_no),
-                'tel': encode(tel)
+                'nic_no': Encode(nic_no),
+                'tel': Encode(tel)
             })
         with open(dataJson, 'w') as outfile:
             json.dump(data, outfile)

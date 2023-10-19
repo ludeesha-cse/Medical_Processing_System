@@ -8,7 +8,7 @@ dataJson = "src/data.json"
 class SignUp:
     roles = {'1': "doctor", '2': "receptionist"}
 
-    def create_user(self):
+    def UserCreate(self):
 
         name = input('Username:')
         password = input('Enter a password including an upper-case letter, lower-case letter, a digit and length not less than 6: \n')
@@ -17,7 +17,7 @@ class SignUp:
                 password = input("Password is too weak. Please re-enter: ")
             else:
                 break
-        safe_password = hash_password(password)
+        safe_password = HashingPassword(password)
 
         # read config file for doctor and receptionist codes
         with open(configJson, 'r') as json_data_file:
@@ -31,19 +31,19 @@ class SignUp:
             role_number = input('Press 1 for "doctor account" or 2 for "receptionist account": ')
 
             if role_number == '1':
-                code = hash_password(input("Please enter the doctor code to create account: "))
+                code = HashingPassword(input("Please enter the doctor code to create account: "))
                 if code == doc_code:
                     user_type = self.roles.get('1')
-                    privilege_level = '2'
+                    #privilege_level = '2'
                     break
                 else:
                     print("Invalid code")
 
             elif role_number == '2':
-                code = hash_password(input("Please enter the receptionist code to create account: "))
+                code = HashingPassword(input("Please enter the receptionist code to create account: "))
                 if code == rec_code:
                     user_type = self.roles.get('2')
-                    privilege_level = '3'
+                    #privilege_level = '3'
                     break
                 else:
                     print("Invalid code")
@@ -59,7 +59,7 @@ class SignUp:
                 'name': name,
                 'password': safe_password,
                 'user_type': user_type,
-                'privilege_level': privilege_level
+                #'privilege_level': privilege_level
             })
         with open(configJson, 'w') as outfile:
             json.dump(data, outfile)
@@ -80,8 +80,8 @@ class SignUp:
                 'id': user_id,
                 'name': acc_name,
                 'age': age,
-                'nic_no': encode(nic_no),
-                'tel': encode(tel)
+                'nic_no': Encode(nic_no),
+                'tel': Encode(tel)
             })
         with open(dataJson, 'w') as outfile:
             json.dump(data, outfile)

@@ -3,13 +3,14 @@ from src.app import main
 
 if __name__ == '__main__':
 
-    n = input("Press 1 to login or 2 to signup: ")
+    n = input("Press \n1 to login \n2 to signup \n")
     if n == '1':
         main()
     elif n == '2':
-        SignUp().create_user()
+        SignUp().UserCreate()
         print("Login to your account")
         main()
     else:
         print("Invalid input")
+        exit()
 

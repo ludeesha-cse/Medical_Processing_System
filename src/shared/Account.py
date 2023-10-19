@@ -5,7 +5,7 @@ from src.shared.hash import *
 configJson = "src/config.json"
 dataJson = "src/data.json"
 
-def edit_account(user_id):
+def AccountEdit(user_id):  #AccountEdit
     new_name = input('Enter new name: ')
     new_age = input('Enter new age: ')
     new_tel = input('Enter new telephone number: ')
@@ -19,7 +19,7 @@ def edit_account(user_id):
 
                 details[i]['name'] = new_name
                 details[i]['age'] = new_age
-                details[i]['tel'] = encode(new_tel)
+                details[i]['tel'] = Encode(new_tel)
 
     with open(dataJson, 'w') as f_outfile:
         json.dump(f_data, f_outfile)
@@ -36,8 +36,8 @@ def view_account(user_id):
             if user_id == str(details[i]['id']):
                 print("Account name: " + details[i]['name'])
                 print("Age: " + details[i]['age'])
-                print("NIC number: " + decode(details[i]['nic_no']))
-                print("Telephone: " + decode(details[i]['tel']))
+                print("NIC number: " + Decode(details[i]['nic_no']))
+                print("Telephone: " + Decode(details[i]['tel']))
 
 
 def renew_password(user_id):
@@ -47,7 +47,7 @@ def renew_password(user_id):
             new_pwd = input("Password is too weak. Please re-enter: ")
         else:
             break
-    new_password = hash_password(new_pwd)
+    new_password = HashingPassword(new_pwd)
 
     with open(configJson, 'r') as data_file:
         f_data = json.load(data_file)
